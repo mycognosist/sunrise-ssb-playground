@@ -1,0 +1,11 @@
+[package]
+name = "sunrise_ssb_play"
+version = "0.1.0"
+authors = ["mycognosist <gnomad@cryptolab.net>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ssb-keyfile = { git = "https://github.com/sunrise-choir/ssb-keyfile", branch = "master" }
+tempfile = "3.2.0"
