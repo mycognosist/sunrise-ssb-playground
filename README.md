@@ -16,6 +16,7 @@ cargo run --example
 Available examples:
     keyfile
     sign_message
+    validate_message
     verify_message
     verify_signature
 ```
