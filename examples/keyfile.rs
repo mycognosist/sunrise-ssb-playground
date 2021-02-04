@@ -1,19 +1,20 @@
+use ssb_keyfile::{KeyFileError, Keypair};
+
+use serde_json::json;
 use tempfile;
-//use ssb_keyfile;
-use ssb_keyfile::{Keypair, KeyFileError};
 
 fn main() -> Result<(), KeyFileError> {
     // https://github.com/sunrise-choir/ssb-keyfile
 
-    //generate a keypair
+    // generate a keypair
     let aruna = Keypair::generate();
 
     println!("{}", aruna.as_base64());
     // vS8uDOK1nU+y3Oxskhfta7AzjbNQ70IpFyoVpzH/IPCzA2COB7U1s7c7NE/2DPjcky67YgZHInOhNWtmqnXVrw==
-    
+
     println!("{}", aruna.public.as_base64());
     // swNgjge1NbO3OzRP9gz43JMuu2IGRyJzoTVrZqp11a8=
-    
+
     // read a keypair from file
     let keypair = ssb_keyfile::read_from_path("/home/cordyceps/.ssb/secret")?;
 
