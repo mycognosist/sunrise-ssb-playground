@@ -980,7 +980,6 @@ checksum = "1e81da0851ada1f3e9d4312c704aa4f8806f0f9d69faaf8df2f3464b4a9437c2"
 name = "sunrise_ssb_play"
 version = "0.1.0"
 dependencies = [
- "serde",
  "serde_json",
  "ssb-crypto 0.2.2 (git+https://github.com/sunrise-choir/ssb-crypto)",
  "ssb-keyfile",

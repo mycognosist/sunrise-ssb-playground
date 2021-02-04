@@ -1,6 +1,5 @@
 use ssb_keyfile::{KeyFileError, Keypair};
 
-use serde_json::json;
 use tempfile;
 
 fn main() -> Result<(), KeyFileError> {

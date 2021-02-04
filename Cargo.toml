@@ -7,7 +7,6 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-serde = "1.0.123"
 serde_json = { version = "1.0.48", features = ["preserve_order", "arbitrary_precision"] }
 ssb-crypto = { git = "https://github.com/sunrise-choir/ssb-crypto", branch = "master" }
 ssb-keyfile = { git = "https://github.com/sunrise-choir/ssb-keyfile", branch = "master" }
