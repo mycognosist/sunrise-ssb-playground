@@ -10,5 +10,6 @@ edition = "2018"
 serde_json = { version = "1.0.48", features = ["preserve_order", "arbitrary_precision"] }
 ssb-crypto = { git = "https://github.com/sunrise-choir/ssb-crypto", branch = "master" }
 ssb-keyfile = { git = "https://github.com/sunrise-choir/ssb-keyfile", branch = "master" }
+ssb-validate = { git = "https://github.com/sunrise-choir/ssb-validate", branch = "master" }
 ssb-verify-signatures = { git = "https://github.com/sunrise-choir/ssb-verify-signatures", branch = "master" }
 tempfile = "3.2.0"

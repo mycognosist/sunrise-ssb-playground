@@ -945,6 +945,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "ssb-multiformats"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7ff05b36f54bbcf7f4bbdbda7da45d75dc700e70cb42fafd7aac58bdaaafc751"
+dependencies = [
+ "base64 0.11.0",
+ "serde",
+ "ssb-crypto 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "ssb-validate"
+version = "1.0.1"
+source = "git+https://github.com/sunrise-choir/ssb-validate?branch=master#54808b9fb01809635d6d215cda2cb613504b1898"
+dependencies = [
+ "rayon",
+ "serde",
+ "sha2 0.8.2",
+ "snafu",
+ "ssb-legacy-msg-data",
+ "ssb-multiformats",
+]
+
+[[package]]
 name = "ssb-verify-signatures"
 version = "1.0.0"
 source = "git+https://github.com/sunrise-choir/ssb-verify-signatures?branch=master#7ee04092277061abfa8a5036b464a4992ae1e41b"
@@ -983,6 +1007,7 @@ dependencies = [
  "serde_json",
  "ssb-crypto 0.2.2 (git+https://github.com/sunrise-choir/ssb-crypto)",
  "ssb-keyfile",
+ "ssb-validate",
  "ssb-verify-signatures",
  "tempfile",
 ]
