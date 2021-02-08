@@ -15,6 +15,7 @@ cargo run --example
 
 Available examples:
     keyfile
+    network_keys
     sign_message
     validate_message
     verify_message
