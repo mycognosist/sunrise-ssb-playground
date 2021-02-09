@@ -6,13 +6,12 @@ fn main() -> Result<(), DecodeLegacyError> {
     // convert `str` to a byte slice (`[u8]`) with `as_bytes()`
     let feed_ref = "@nUtgCIpqOsv6k5mnWKA4JeJVkJTd9Oz2gmv6rojQeXU=.ed25519".as_bytes();
 
-    // attempt to parse a legacy encoding into a `Multifeed`
-    match Multifeed::from_legacy(&feed_ref) {
-        Ok(_) => println!("is feed"),
-        Err(e) => eprintln!("{:?}", e),
-    }
-    // is feed
+    // check if given ssb reference is a feed
+    if Multifeed::from_legacy(&feed_ref).is_ok() {
+        println!("is feed")
+    };
 
+    // attempt to parse a legacy encoding into a `Multifeed`.
     // `from_legacy()` returns `Ok(Multifeed, &[u8])` on success, where `Multifeed` is an enum with
     // a single variant `Multikey(Multikey)`
     let feed = Multifeed::from_legacy(&feed_ref)?;

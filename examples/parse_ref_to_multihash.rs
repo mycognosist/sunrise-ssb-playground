@@ -29,7 +29,7 @@ fn main() -> Result<(), DecodeLegacyError> {
         Ok(_) => println!("is msg or blob"),
         Err(e) => eprintln!("Error: {:?}", e),
     }
-    // Error:
+    // Error: Sigil
 
     Ok(())
 }
