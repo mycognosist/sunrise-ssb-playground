@@ -13,8 +13,8 @@ fn main() -> Result<(), DecodeLegacyError> {
     }
     // is feed
 
-    // `from_legacy()` returns `Ok((Multifeed::from_multikey(mk), tail))` on success
-    // `tail` is empty in this example
+    // `from_legacy()` returns `Ok(Multifeed, &[u8])` on success, where `Multifeed` is an enum with
+    // a single variant `Multikey(Multikey)`
     let feed = Multifeed::from_legacy(&feed_ref)?;
     println!("{:?}", feed);
     // (Multikey(Ed25519(PublicKey([157, 75, 96, 8, 138, 106, 58, 203, 250, 147, 153, 167, 88, 160, 56, 37, 226, 85, 144, 148, 221, 244, 236, 246, 130, 107, 250, 174, 136, 208, 121, 117]))), [])
@@ -28,7 +28,7 @@ fn main() -> Result<(), DecodeLegacyError> {
     }
     // Error: UnknownKind
 
-    // `UnknownKind` is returned if the input does not start with the `"@"` sigil
+    // `UnknownKind` is returned if the input does not start with the `"@"` sigil.
     // a second error variant (`Multikey(multikey::DecodeLegacyError)`) is returned if the inner
     // multikey decoding fails
 

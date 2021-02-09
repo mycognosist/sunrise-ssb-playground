@@ -16,7 +16,8 @@ cargo run --example
 Available examples:
     keyfile
     network_keys
-    parse_ref
+    parse_ref_to_multifeed
+    parse_ref_to_multihash
     sign_message
     validate_message
     verify_message
