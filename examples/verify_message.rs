@@ -8,7 +8,7 @@ fn main() -> Result<(), Error> {
     // attempt to verify the signature of the key_only_message
     match ssb_verify_signatures::verify_message(key_only_message.as_bytes()) {
         Ok(_) => println!("verified"),
-        Err(e) => eprintln!("{}", e)
+        Err(e) => eprintln!("{}", e),
     };
     // Error parsing ssb message as json, it is invalid. Errored with: missing field `value` at line 1 column 65
 
@@ -36,7 +36,7 @@ fn main() -> Result<(), Error> {
     // verify a single message
     match ssb_verify_signatures::verify_message(valid_message.as_bytes()) {
         Ok(_) => println!("verified"),
-        Err(e) => eprintln!("{}", e)
+        Err(e) => eprintln!("{}", e),
     };
     // verified
 
@@ -58,7 +58,7 @@ fn main() -> Result<(), Error> {
     // verify the `value` fields of a single message
     match ssb_verify_signatures::verify_message_value(valid_message_value.as_bytes()) {
         Ok(_) => println!("verified"),
-        Err(e) => eprintln!("{}", e)
+        Err(e) => eprintln!("{}", e),
     };
     // verified
 
@@ -66,11 +66,11 @@ fn main() -> Result<(), Error> {
     let valid_msg = valid_message.as_bytes();
     // verify multiple messages in parallel
     let messages = [valid_msg, valid_msg, valid_msg];
-   
+
     // verify a collection of messages in parallel
     match ssb_verify_signatures::par_verify_messages(&messages, None) {
         Ok(_) => println!("verified"),
-        Err(e) => eprintln!("{}", e)
+        Err(e) => eprintln!("{}", e),
     };
     // verified
 
@@ -81,9 +81,9 @@ fn main() -> Result<(), Error> {
     // verify a collection of messages `value` fields in parallel
     match ssb_verify_signatures::par_verify_message_values(&values, None) {
         Ok(_) => println!("verified"),
-        Err(e) => eprintln!("{}", e)
+        Err(e) => eprintln!("{}", e),
     };
     // verified
-    
+
     Ok(())
 }

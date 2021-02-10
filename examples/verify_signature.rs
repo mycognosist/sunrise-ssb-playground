@@ -25,9 +25,11 @@ fn main() -> Result<(), Error> {
 
     // generate a second keypair
     let benedict = Keypair::generate();
-    
+
     // attempt to verify the signed object with benedict's public key
-    let is_valid_b = benedict.public.verify(&signature, &example_string.as_bytes());
+    let is_valid_b = benedict
+        .public
+        .verify(&signature, &example_string.as_bytes());
     println!("{}", is_valid_b);
     // false
 

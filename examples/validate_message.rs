@@ -46,18 +46,24 @@ fn main() {
     }"##;
 
     // validate the message hash chain
-    match ssb_validate::validate_message_hash_chain(valid_message_2.as_bytes(), Some(valid_message_1.as_bytes())) {
+    match ssb_validate::validate_message_hash_chain(
+        valid_message_2.as_bytes(),
+        Some(valid_message_1.as_bytes()),
+    ) {
         Ok(_) => println!("validated"),
-        Err(e) => eprintln!("{}", e)
+        Err(e) => eprintln!("{}", e),
     };
     // validated
 
     let invalid_message = r##"{ "field": "value" }"##;
 
     // attempt to validate the message hash chain using one valid and one invalid message
-    match ssb_validate::validate_message_hash_chain(invalid_message.as_bytes(), Some(valid_message_2.as_bytes())) {
+    match ssb_validate::validate_message_hash_chain(
+        invalid_message.as_bytes(),
+        Some(valid_message_2.as_bytes()),
+    ) {
         Ok(_) => println!("validated"),
-        Err(e) => eprintln!("{}", e)
+        Err(e) => eprintln!("{}", e),
     };
     // Message was invalid. Decoding failed with: Message("missing field `key`")
 
@@ -96,21 +102,24 @@ fn main() {
     }"##;
 
     // validate the message value hash chain
-    match ssb_validate::validate_message_value_hash_chain(valid_msg_value_2.as_bytes(), Some(valid_msg_value_1.as_bytes())) {
+    match ssb_validate::validate_message_value_hash_chain(
+        valid_msg_value_2.as_bytes(),
+        Some(valid_msg_value_1.as_bytes()),
+    ) {
         Ok(_) => println!("validated"),
-        Err(e) => eprintln!("{}", e)
+        Err(e) => eprintln!("{}", e),
     };
     // This feed is forked. Last known good message was as seq: 1
 
     let messages = [valid_message_1.as_bytes(), valid_message_2.as_bytes()];
-    
+
     // If you're passing `None` as the `previous` argument you'll need to give the compiler a hint
     // about the type.
-    
+
     // validate the message hash chain for a collection of messages
     match ssb_validate::par_validate_message_hash_chain_of_feed::<_, &[u8]>(&messages, None) {
         Ok(_) => println!("validated"),
-        Err(e) => eprintln!("{}", e)
+        Err(e) => eprintln!("{}", e),
     };
     // validated
 }

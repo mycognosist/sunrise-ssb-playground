@@ -8,7 +8,7 @@ use async_std::task;
 
 fn main() -> Result<(), HandshakeError<io::Error>> {
     // https://github.com/sunrise-choir/ssb-handshake
-    
+
     // start an asynchronous task
     task::block_on(async {
         // read the keypair from our local file
@@ -38,11 +38,15 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
 
             println!("Attempting secret handshake...");
 
-            let handshake_keys = ssb_handshake::server_side(&mut stream, &net_key, &keypair).await?;
-            
+            let handshake_keys =
+                ssb_handshake::server_side(&mut stream, &net_key, &keypair).await?;
+
             println!("💃 Handshake successful! 💃");
 
-            println!("Connected to peer {:?}", handshake_keys.peer_key.as_base64());
+            println!(
+                "Connected to peer {:?}",
+                handshake_keys.peer_key.as_base64()
+            );
         }
 
         Ok(())
@@ -54,7 +58,7 @@ async fn server_handshake(mut stream: TcpStream) -> Result<(), HandshakeError<io
     println!("Accepted from: {}", stream.peer_addr()?);
 
     //let keypair = Keypair::generate();
-    
+
     // READ SECRET FROM FILE _ DON'T PUSH !
     let keypair = ssb_keyfile::read_from_path("/home/cordyceps/.ssb/secret").unwrap();
     let net_key = NetworkKey::SSB_MAIN_NET;

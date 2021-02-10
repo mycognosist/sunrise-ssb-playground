@@ -1,4 +1,4 @@
-use ssb_multiformats::multihash::{Multihash, DecodeLegacyError};
+use ssb_multiformats::multihash::{DecodeLegacyError, Multihash};
 
 fn main() -> Result<(), DecodeLegacyError> {
     // https://github.com/sunrise-choir/ssb-multiformats/blob/master/src/multihash.rs
