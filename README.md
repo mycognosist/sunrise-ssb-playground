@@ -14,6 +14,8 @@ Print a list of the available examples:
 cargo run --example
 
 Available examples:
+    async_client_handshake
+    async_server_handshake
     keyfile
     network_keys
     parse_ref_to_multifeed
