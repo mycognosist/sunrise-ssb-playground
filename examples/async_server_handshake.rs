@@ -52,39 +52,3 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
         Ok(())
     })
 }
-
-/*
-async fn server_handshake(mut stream: TcpStream) -> Result<(), HandshakeError<io::Error>> {
-    println!("Accepted from: {}", stream.peer_addr()?);
-
-    //let keypair = Keypair::generate();
-
-    // READ SECRET FROM FILE _ DON'T PUSH !
-    let keypair = ssb_keyfile::read_from_path("/home/cordyceps/.ssb/secret").unwrap();
-    let net_key = NetworkKey::SSB_MAIN_NET;
-
-    let _handshake_keys = ssb_handshake::server_side(&mut stream, &net_key, &keypair).await?;
-
-    println!("SUCCESS!");
-
-    Ok(())
-}
-
-//fn main() -> io::Result<()> {
-fn main() -> Result<(), HandshakeError<io::Error>> {
-    task::block_on(async {
-        let listener = TcpListener::bind("127.0.0.1:8080").await?;
-        println!("Listening on {}", listener.local_addr()?);
-
-        let mut incoming = listener.incoming();
-
-        while let Some(stream) = incoming.next().await {
-            let stream = stream?;
-            task::spawn(async {
-                server_handshake(stream).await;
-            });
-        }
-        Ok(())
-    })
-}
-*/
