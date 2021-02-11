@@ -62,7 +62,7 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
             println!("Creating a new boxstream");
 
             // create a new boxstream and split it into a reader and writer
-            let (_box_reader, box_writer) = BoxStream::new(
+            let (box_reader, box_writer) = BoxStream::new(
                 tcp_reader,
                 tcp_writer,
                 handshake_keys.read_key,
@@ -77,6 +77,11 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
             // create a new packet sink (writer)
             let mut packet_sink = PacketSink::new(box_writer);
 
+            println!("Creating a new packet stream");
+
+            // create a new packet stream (reader)
+            let mut packet_stream = PacketStream::new(box_reader);
+
             // create a packet to send (write to sink)
             let p = Packet::new(
                 IsStream::Yes,
@@ -90,6 +95,16 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
             packet_sink.send(p).await.unwrap();
 
             println!("Packet sent");
+
+            // attempt to receive a packet (read from stream)
+            let packet = packet_stream.next().await.unwrap().unwrap();
+
+            println!("Packet received: {:?} from {:?}", &packet.body, packet.id);
+
+            if packet.is_end() == true {
+                println!("Closing stream...");
+                // TODO: figure out how to close the streams (shutdown stream)
+            }
         }
 
         Ok(())

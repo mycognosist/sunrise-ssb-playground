@@ -20,6 +20,8 @@ Available examples:
     handshake_server
     keyfile
     network_keys
+    packetstream_client
+    packetstream_server
     parse_ref_to_multifeed
     parse_ref_to_multihash
     sign_message

@@ -8,6 +8,10 @@ use async_std::net::TcpStream;
 use async_std::prelude::*;
 use async_std::task;
 
+use futures::sink::SinkExt;
+
+//use std::net::Shutdown;
+
 fn main() -> Result<(), HandshakeError<io::Error>> {
     // start an asynchronous task
     task::block_on(async {
@@ -53,7 +57,7 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
         println!("Creating a new boxstream");
 
         // create a new boxstream and split it into a reader and writer
-        let (box_reader, _box_writer) = BoxStream::new(
+        let (box_reader, box_writer) = BoxStream::new(
             tcp_reader,
             tcp_writer,
             handshake_keys.read_key,
@@ -63,15 +67,27 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
         )
         .split();
 
-        println!("Create a new packet stream");
+        println!("Creating a new packet stream");
 
         // create a new packet stream (reader)
         let mut packet_stream = PacketStream::new(box_reader);
+
+        println!("Creating a new packet sink");
+
+        // create a new packet sink (writer)
+        let mut packet_sink = PacketSink::new(box_writer);
 
         // attempt to receive a packet (read from stream)
         let packet = packet_stream.next().await.unwrap().unwrap();
 
         println!("Packet received: {:?} from {:?}", &packet.body, packet.id);
+
+        // create a packet to send (write to sink)
+        let p = Packet::new(IsStream::Yes, IsEnd::Yes, BodyType::Binary, 54321, vec![0]);
+
+        println!("Sending goodbye packet");
+
+        packet_sink.send(p).await.unwrap();
 
         Ok(())
     })
