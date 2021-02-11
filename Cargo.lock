@@ -1294,6 +1294,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "ssb-boxstream"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f35cf2ef9044a6eb7ae2e5e944ccd4f0b88b53999c1db7397632c6bcd3e53435"
+dependencies = [
+ "byteorder",
+ "futures-core",
+ "futures-io",
+ "ssb-crypto",
+ "thiserror",
+ "zerocopy",
+]
+
+[[package]]
 name = "ssb-crypto"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1419,6 +1433,7 @@ dependencies = [
  "futures",
  "rand 0.7.3",
  "serde_json",
+ "ssb-boxstream",
  "ssb-crypto",
  "ssb-handshake",
  "ssb-keyfile",

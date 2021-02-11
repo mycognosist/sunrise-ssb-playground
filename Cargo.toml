@@ -11,6 +11,7 @@ async-std = "1.9.0"
 futures = "0.3.8"
 rand = "0.7"
 serde_json = { version = "1.0.48", features = ["preserve_order", "arbitrary_precision"] }
+ssb-boxstream = "0.2.2"
 ssb-crypto = "0.2.2"
 ssb-handshake = "0.5.1"
 ssb-keyfile = "0.5.3"
