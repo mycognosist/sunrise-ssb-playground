@@ -57,8 +57,16 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
         println!("Creating a new boxstream");
 
         // create a new boxstream and split it into a reader and writer
-        let (mut box_reader, _box_writer) = BoxStream::new(tcp_reader, tcp_writer, handshake_keys.read_key, handshake_keys.read_starting_nonce, handshake_keys.write_key, handshake_keys.write_starting_nonce).split();
-        
+        let (mut box_reader, _box_writer) = BoxStream::new(
+            tcp_reader,
+            tcp_writer,
+            handshake_keys.read_key,
+            handshake_keys.read_starting_nonce,
+            handshake_keys.write_key,
+            handshake_keys.write_starting_nonce,
+        )
+        .split();
+
         // create a buffer to store incoming data
         let mut buf = [0; 8];
 

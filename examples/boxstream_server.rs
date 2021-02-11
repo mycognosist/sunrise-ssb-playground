@@ -49,7 +49,7 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
                 "Connected to peer {:?}",
                 handshake_keys.peer_key.as_base64()
             );
-        
+
             /* attempting to create box stream */
 
             // split the tcp stream into a reader and writer
@@ -59,13 +59,21 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
             let tcp_writer = stream;
 
             println!("Creating a new boxstream");
-            
+
             // create a new boxstream and split it into a reader and writer
-            let (_box_reader, mut box_writer) = BoxStream::new(tcp_reader, tcp_writer, handshake_keys.read_key, handshake_keys.read_starting_nonce, handshake_keys.write_key, handshake_keys.write_starting_nonce).split();
+            let (_box_reader, mut box_writer) = BoxStream::new(
+                tcp_reader,
+                tcp_writer,
+                handshake_keys.read_key,
+                handshake_keys.read_starting_nonce,
+                handshake_keys.write_key,
+                handshake_keys.write_starting_nonce,
+            )
+            .split();
 
             // test data to be written to the boxstream
             let body = [1, 1, 0, 2, 2, 0, 2, 1, 7, 6, 5, 4, 3, 2, 1, 0];
-            
+
             println!("Writing to the boxstream");
 
             // write some data to the box
