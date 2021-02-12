@@ -82,12 +82,15 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
 
         println!("Packet received: {:?} from {:?}", &packet.body, packet.id);
 
-        // create a packet to send (write to sink)
-        let p = Packet::new(IsStream::Yes, IsEnd::Yes, BodyType::Binary, 54321, vec![0]);
-
-        println!("Sending goodbye packet");
-
-        packet_sink.send(p).await.unwrap();
+        // check if data packet is part of a stream
+        println!("IsStream: {}", packet.is_stream());
+        
+        // check if data packet is a 'goodbye message'
+        println!("IsEnd: {}", packet.is_end());
+        
+        println!("Sending goodbye message...");
+        
+        packet_sink.close().await.unwrap();
 
         Ok(())
     })

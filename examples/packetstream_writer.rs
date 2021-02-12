@@ -97,14 +97,12 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
             println!("Packet sent");
 
             // attempt to receive a packet (read from stream)
-            let packet = packet_stream.next().await.unwrap().unwrap();
+            match packet_stream.next().await {
+                Some(s) => println!("{:?}", s),
+                None => println!("Received goodbye message")
+            };
 
-            println!("Packet received: {:?} from {:?}", &packet.body, packet.id);
-
-            if packet.is_end() == true {
-                println!("Closing stream...");
-                // TODO: figure out how to close the streams (shutdown stream)
-            }
+            break
         }
 
         Ok(())
