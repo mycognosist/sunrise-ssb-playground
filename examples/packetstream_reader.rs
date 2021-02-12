@@ -84,12 +84,12 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
 
         // check if data packet is part of a stream
         println!("IsStream: {}", packet.is_stream());
-        
+
         // check if data packet is a 'goodbye message'
         println!("IsEnd: {}", packet.is_end());
-        
+
         println!("Sending goodbye message...");
-        
+
         packet_sink.close().await.unwrap();
 
         Ok(())

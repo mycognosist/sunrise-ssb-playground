@@ -99,10 +99,10 @@ fn main() -> Result<(), HandshakeError<io::Error>> {
             // attempt to receive a packet (read from stream)
             match packet_stream.next().await {
                 Some(s) => println!("{:?}", s),
-                None => println!("Received goodbye message")
+                None => println!("Received goodbye message"),
             };
 
-            break
+            break;
         }
 
         Ok(())
